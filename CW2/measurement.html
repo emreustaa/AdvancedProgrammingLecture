@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="https://blm-fsmvu.github.io/305/images/icon192.png">
+    <title>Sayaç </title>
+
+  <style> /* CSS comment */
+    body { max-width: 440px; background-color:cadetblue;}
+    #inp { width: 50px}
+    #out {
+        font-size: 18px;
+        background: blue;
+        color: white;
+        text-align: center;
+        padding: 10px;
+    }
+  </style>
+</head>
+
+<body>   <!-- HTML comment: Modify all items marked xxx -->
+
+<h2 id=title>This text is not shown. Why?</h2>
+inch 
+<input type=number id=inch value=0 onChange="inchToCm()">
+cm 
+<input type=number id=cm value=0 onChange="cmToInch()">
+
+&emsp;
+
+<script>
+"use strict";
+function inchToCm() {
+  let x = Number(inch.value) * 2.54;
+  cm.value = x.toFixed(1);
+}
+
+function cmToInch(){
+  let x = Number(cm.value) / 2.54;
+  inch.value = x.toFixed(1);
+}
+    //global variable id is the HTML element with id 
+    //const title = document.getElementById("title");
+    title.innerText = document.title;
+    sample.innerText = increment.toString();
+    out.innerText = 0; increment();
+</script>
+
+</body>
+</html>

@@ -32,13 +32,13 @@ cm
 <script>
 "use strict";
 function inchToCm() {
-  let x = Number(inch.value) * 2.54;
-  cm.value = x.toFixed(1);
+  let temp = Number(inch.value) * 2.54;
+  cm.value = temp.toFixed(1);
 }
 
 function cmToInch(){
-  let x = Number(cm.value) / 2.54;
-  inch.value = x.toFixed(1);
+  let temp = Number(cm.value) / 2.54;
+  inch.value = temp.toFixed(1);
 }
     //global variable id is the HTML element with id 
     //const title = document.getElementById("title");

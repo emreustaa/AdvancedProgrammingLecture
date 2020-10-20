@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="../images/icon192.png">
+    <title>List of Objects </title>
+
+  <style>
+    body { max-width: 500px; }
+    #inp { white-space: pre-wrap; }
+    #sample { overflow-x: auto; }
+    #out { color: blue; }
+  </style>
+</head>
+
+<body>
+
+<h2 id=title></h2>
+<b>Text input &emsp;
+<input type=button id=convert value=Convert onclick="toList()">
+</b>
+<p>
+  <textarea id=inp onchange="convert.disabled=false" rows=10 cols=50 >
+  </textarea>
+</p>
+
+m
+<p> 
+  Kullanılan metotlar</p>
+<p>dizi.sort() : Sıralamak için kullanıldı</p>
+<p>dizi.reverse() :  Dizi elemanlarının tersten sıralanması için kullanıldı</p>
+<p>dizi.map(s=> s.Bölüm) : Bölüme göre data geldi.</p>
+<p>dizi.filter(d=>d.Bölüm =="Bilgisayar Muhendisligi") : Bilgisayar mühendisliğine ait olanları getirmek için kullanıldı.</p>
+
+<b>JSON output</b>
+<pre id=out></pre>
+<hr />
+<b>Sample code</b>
+<pre id=sample></pre>
+<hr />
+<p>Ref: 
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters#Examples" 
+   target="NewTab">Rest Parameters</a>
+</p>
+
+<script>
+"use strict";
+function toList(str) {
+  function toObject(x) {
+    let b = {}
+    for (let [i,s] of x.split('\t').entries())
+      b[keys[i]] = (isNaN(s)? s : Number(s))
+    return b
+  }
+    if (str) inp.value = str
+    else str = inp.value
+    convert.disabled = true
+    let [d0, ...data] = str.split('\n')
+    let keys = d0.split('\t')
+    console.log("Keys:", keys)
+    let a = data.map(toObject)
+    out.innerText = JSON.stringify(a, '' ,2)
+    console.table(a)
+    return a
+}
+const PLANET = 
+`Name	Diam	Mass	Radius	Period
+Mercury	0.382	0.06	0.40	0.24
+Venus	0.949	0.82	0.72	0.62
+Earth	1.000	1.00	1.00	1.00
+Mars	0.532	0.11	1.52	1.88
+Jupiter	11.209	317.80	5.20	11.86
+Saturn	9.449	95.20	9.54	29.46
+Uranus	4.007	14.60	19.22	84.01
+Neptune	3.883	17.20	30.06	164.80`,
+
+MOUNT = `Ad	Soyad	Bölüm	Tc No	İlgi Alanları	Sınıf
+Mustafa Şamil	İleri	Elektrik elektronik Mühendisliği	50686032482	-Robotik Kodlama-Yapay zeka- Yapı elektriği -Devre Donanım ve Tasarım	2
+Melih Cagri	Ay	Bilgisayar Muhendisligi	29045396930	mobil yazilim-robotik kodlama-yapay zeka-web sitesi tasarimi	1
+Kevser Büşra 	Yıldırım 	Bilgisayar Mühendisliği 	65548085056	UX/UI design ve Web programcılığı, yapay zeka, robotik kodlama	1
+Halil İbrahim 	Kaya	Bilgisayar Mühendisilği	40789863724	mobil yazılım-robotik kodlama-web devolopment-Linux	2
+GULIMIRE 	AINIWAER 	Bilgisayar  Mühendisliği 	99398475262	Yapay zeka 	1
+Salim	Şahin	Bilgisayar Mühendisliği	39736692432	Eklemeli üretim teknolojileri, endustriyel ve robotik tasarım, robotik kodlama	4
+Rana Sevdenur 	Kazan	Bilgisayar Mühendisliği	28565359036	Robotik kodlama, web programcılığı, mobil yazılım, yapay zeka	1
+Ahmet 	Zümberoğlu	Bilgisayar Mühendisliği	26180153466	DevOps ve web/mobil programlama	2.sınıf
+Abdulsamet	Eraslan	Bilgisayar Mühendisliği	25114976522	Android Uygulama/Oyun Programlama - Gömülü Yazılım - Görüntü İşleme	4
+Enes	KARALİ	Bilgisayar Mühendisliği	37721040688	Yapay zeka, mobil ve web uygulama geliştirme, görüntü işleme	4
+Muhammed Zahid	ÜNAL	Bilgisayar Mühendisliği 	34183434178	Görüntü işleme, Big Data	4
+Ali 	Dereyurt	Bilgisyar Mühendisliği	33854139848	Mobil yazılım-uzay ve uçak araçları, yapay zeka	2
+Nagkichan	Moustafa	Bilgisayar Mühendisliği	99272864052	Mobil yazılım, machine learning, robotik kodlama, yapay zeka, uzay ve hava araçları	2
+Furkan Batuhan	Ergöçen 	Bilgisayar Mühendisliği	53662179638	yapay zeka, robotik kodlama, oyun geliştirme, mobil uygulama 	1
+Bedirhan	Yıldırım 	Bilgisayar Mühendisliği	23767724132	İnternet servisi geliştirme (api), arayüz geliştirme (ui/ux), robotik, network (haberleşme)	4
+Tuğba	Peker	Elektrik-Elektronik Mühendisliği 	28477562012	Robotik Kodlama, İnsansız Hava Araçları, Gömülü Sistemler	3
+Mehmet Akif	Baştuğ	Elektrik-Elektronik Mühendisliği 	18683705884	Elektrik Makineleri, İnsansız Hava Araçları, Gömülü Sistemler	3
+Emre	Tanrıverdi	Bilgisayar Mühendisliği	37678325630	Robotik kodlama, yapay zeka, savunma sanayi sistemleri, insansız hava araçları, insansız kara araçları, mobil kodlama ve mobil teknoloji ürünleri	1
+Abdullah Selim 	Köksal 	Elektrik-Elektronik Mühendisliği	1721241011	Uçak ve uzay,Haberleşme 	2`
+
+    title.innerText = document.title
+    sample.innerText = toList
+    inp.value = MOUNT
+    //toList()  //array of objects
+</script>
+
+</body>
+</html>

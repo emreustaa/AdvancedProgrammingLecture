@@ -133,9 +133,15 @@
     <h1>Work or Weekend Journal</h1>
     <p id="allEntry"></p>
     <textarea id="data" rows="4" cols="50"></textarea>
-    <pre id="display1"></pre> <img id="display2"> inch
-    <input type=number id=inch value=0 onChange="inchToCm()"> cm
-    <input type=number id=cm value=0 onChange="cmToInch()">
+
+    <p>
+        <label>Cm</label>
+        <input id="cm" type="number" placeholder="cm" oninput="convertCm(this.value)">
+    </p>
+    <p>
+        <label>Inch</label>
+        <input id="inch" type="number" placeholder="Inch" oninput="convertinch(this.value)">
+    </p>
 
 
     <link href="./Inspector_files/inspector.css" rel="stylesheet">
@@ -224,14 +230,17 @@
             }
         }
 
-        function inchToCm(valNum) {
+        function convertCm(valNum) {
             let num = new Lenght(valNum);
-            document.getElementById("inch").value = num.inch;
+            cm.value = num;
+            //document.getElementById("inch").value = num.inch;
         }
 
-        function cmToInch(valNum) {
+        function convertinch(valNum) {
             var num = Lenght.fromInch(valNum).cm;
-            document.getElementById("cm").value = num;
+            inch.value = num;
+
+            //document.getElementById("cm").value = num;
         }
         class Lenght {
             constructor(cm) {

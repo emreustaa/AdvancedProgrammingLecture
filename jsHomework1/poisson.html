@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" sizes="192x192" href="icon.png">
+    <title>Poisson Table Homework</title>
+
+    <style>
+        body {
+            max-width: 440px;
+        }
+        
+        #sample {
+            overflow-x: auto;
+        }
+        
+        table {
+            border-collapse: collapse;
+        }
+        
+        th {
+            color: darkred;
+            padding: 5px 5px;
+        }
+        
+        td {
+            border: 1px solid darkred;
+            padding: 5px 5px;
+            text-align: center;
+            position: relative;
+        }
+        
+        td:hover .tip {
+            visibility: visible;
+        }
+        
+        td .tip {
+            visibility: hidden;
+            font-size: small;
+            background-color: brown;
+            color: white;
+            text-align: center;
+            padding: 5px 5px;
+            position: absolute;
+            left: 5px;
+            top: 20px;
+        }
+    </style>
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.980.0">
+    <center>
+        <h2> <pre id="title">Poisson Table HomeWork<hr/>(1721221023 - Emre USTA)<pre></h2>
+        <table id="tablo">
+
+        </table>
+
+
+    </center>
+
+    <pre id="sample">
+
+    </pre>
+
+            <script>
+                "use strict";
+
+
+                function makeRows() {
+                    const L = [0.5, 1, 1.5, 2, 2.5, 3]
+                    const p = []
+                    for (let λ of L) {
+                        p.push(Math.exp(-λ))
+                    }
+                    let raw = ""
+                    let table = ""
+                    for (let i = 0; i < 9; i++) {
+                        if (i == 0) {
+                            raw = "<tr><th></th>"
+                            for (let j = 0; j < L.length; j++) {
+                                raw += "<th>λ =" + L[j] + "</th>"
+                            }
+                            raw += "</tr>"
+                            raw += "<tr><th>X = " + i + "</th>"
+                            for (let j = 0; j < p.length; j++) {
+                                raw += "<td>" + p[j].toFixed(4) + "<span class='tip'>C1</span></td>"
+                            }
+                            raw += "</tr>"
+
+                        } else {
+                            raw = "<tr><th>X = " + i + "</th>"
+                            for (let j = 0; j < p.length; j++) {
+                                raw += "<td>" + p[j].toFixed(4) + "<span class='tip'>C1</span></td>"
+                            }
+                            raw += "</tr>"
+
+                        }
+                        for (let j = 0; j < L.length; j++) {
+                            p[j] = (p[j] * L[j]) / (i + 1)
+                        }
+                        table = table + raw
+                    }
+
+                    document.getElementById("tablo").innerHTML = table
+                }
+
+                makeRows()
+                document.querySelector("#sample").innerText = makeRows.toString()
+            </script>
+
+            <script>
+                mendeleyWebImporter = {
+                    open: function() {
+                        window.postMessage('0.9393027142612005', 'https://maeyler.github.io')
+                    }
+                }
+            </script>
+
+
+</body>
+
+</html>

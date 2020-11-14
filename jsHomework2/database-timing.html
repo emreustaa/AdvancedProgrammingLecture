@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="/jslogo.jpg">
+    <title>Database and Timing Homework</title>
+    <h2> <pre id="title">       1721221023 - Emre USTA  <hr>    Database and Timing Homework<pre></h2>
+    <style>
+        body {
+            max-width: 440px;
+        }
+        
+        .link {
+            color: blue;
+            cursor: pointer;
+            font-style: italic;
+        }
+        
+        .liste {
+            visibility: hidden;
+            font: 11px arial, sans-serif;
+            color: white;
+            background: blue;
+            cursor: text;
+            padding: 6px;
+            position: absolute;
+            height: 116px;
+            overflow-y: auto;
+        }
+        
+        .link:hover .liste {
+            visibility: visible;
+        }
+
+      
+       
+        
+    </style>
+</head>
+
+<body>
+
+    <h2 id=title></h2>
+    
+    <div>
+        <button style="margin-left: 10px;" onClick='randomStd()'>Random</button>
+        <button style="margin-left: 30px;" onClick='findBest()'>Best GPA</button>
+        <button style="margin-left: 30px;" onClick='out.innerText=""'>Clear</button>
+        <button style="margin-left: 30px;"  onClick='courseNumber(examroom.value)'>Total Course</button>
+    </div>
+
+    <div style="background-color: darkkhaki;">
+        <hr>
+            <p style="color: crimson; font-size: 17px;font-weight: bold;margin-left: 5px">Student id:
+                <input id="student" type=text value="210120566">
+                <button onClick='showSchedule(student.value)'>Exam Schedule</button>
+            </p>
+        <hr>
+    </div>
+
+    <div style="background-color: aqua;">
+        <hr>
+
+            <p style="color: blueviolet;font-size: 17px;font-weight: bold;margin-left: 5px;">Course Id:
+                <input id="course" type=text value="ADP 101">
+                <button onClick='studentList(course.value)'>Student list</button>
+            </p>
+        <hr>
+    </div>
+
+
+    <div style="background-color: lightgreen;">
+        <hr>
+            <p style="color: brown;font-size: 17px;font-weight: bold;margin-left: 5px;">Exam Room:
+                <input id="examroom" type=text value="GG306">
+                <button onClick='courseList(examroom.value)'>Show Course list</button>
+            </p>
+        <hr>
+    </div>
+         
+    <div style="background-color: darkred;">
+        <hr>
+            <p style="color: white;font-size: 17px;font-weight: bold;margin-left: 5px;">Course Id:
+                <input id="courseroom" type=text value="GTP 101">
+                <button onClick='courseRoom(courseroom.value)'>Rooms of course</button>
+            </p>
+        <hr>
+    </div>
+
+    
+    <div style="background-color: violet;">
+        <hr>
+            <p style="color: white;font-size: 17px;font-weight: bold;margin-left: 5px;"> Course Time:
+                <input id="time" type=text value="GG306">
+                <button onClick='courseTime(time.value)'>Course Time</button>
+            </p>
+        <hr>
+    </div>
+    <div style="background-color: teal;">
+        <hr>
+            <p style="color: white;font-size: 17px;font-weight: bold;margin-left: 5px;"> Course Date:
+                <input id="date" type=text value="GG306">
+                <button onClick='courseDate(date.value)'>Course Date</button>
+            </p>
+        <hr>
+    </div>
+    
+    <div style="background-color: tomato;">
+        <hr>
+            <p style="color: white;font-size: 17px;font-weight: bold;margin-left: 5px;"> Gpa Count:
+                <input id="gpa" type=text value="3">
+                <button onClick='findGpa(gpa.value)'>GPA Count</button>
+            </p>
+        <hr>
+    </div>
+    
+    <div>
+        <hr>
+            <p>
+                <button onClick='partTwo()'>Part Two</button>
+            </p>
+        <hr>
+    </div>
+    
+        <div style="background-color: thistle;">
+
+            <pre id=out onClick='doClick(event)'>Result:</pre>
+
+        </div>
+
+        <hr />
+        <b>Sample code</b>
+        <pre id=sample></pre>
+        <hr />
+
+        <script>
+            "use strict";
+            class Student {
+                constructor(id, name, gpa, ...list) {
+                    if (!id) throw "Undefined Student id"
+                    this.id = id;
+                    this.name = name;
+                    this.gpa = gpa.padEnd(4, '0');
+                    this.list = list
+                }
+                toString() {
+                    return this.id + ' ' + this.name + ' ' + this.gpa
+                }
+                static fromString(s) {
+                    return new Student(...s.split('\t'))
+                }
+            }
+            class Course { //implement this
+                constructor(id, time, date, ...rooms) {
+                    if (!id) throw "Undefined Course id"
+                    this.id = id;
+                    this.time = time
+                    this.date = date
+                    this.rooms = rooms
+                }
+                toString() {
+                    return this.id + ' ' + this.time + ' ' + this.date
+                }
+                static fromString(s) {
+                    return new Course(...s.split('\t'))
+                }
+            }
+
+            function report(msg, id, list) {
+                msg += " ";
+                let txt = "<br>\n" + msg;
+                if (id) {
+                    msg += id;
+                    txt += "<span class=link>" + id
+                    if (list) txt += "<span class=liste>" +
+                        list.join("<br>") + "</span>"
+                    txt += "</span>"
+                }
+                console.log(msg);
+                out.innerHTML += txt;
+            }
+            const stdMap = new Map(),
+                crsMap = new Map(); //global
+            function makeData(txt, Maker, map) {
+                map.clear()
+                for (let line of txt.split('\n')) {
+                    if (!line) continue
+                    let std = Maker.fromString(line)
+                    map.set(std.id, std)
+                }
+                report(map.size + " items");
+                return map;
+            }
+
+            function doClick(evt) {
+                let s = evt.target.innerText;
+                //if s contains only digits
+                if (/^\d+$/.test(s)) showStd(s);
+            }
+
+            function showStd(id) {
+                let std = stdMap.get(id);
+                if (!std) return report(id + " not found");
+                let t = std.toString()
+                report(t, "(" + std.list.length + " courses)", std.list);
+                return std
+            }
+
+            function showCrs(id) {
+
+                id = id.toUpperCase();
+                let arr = [];
+                let data = crsMap.get(id)
+                let mapValues = stdMap.values();
+                for (let student of mapValues)
+                    if (student.list.includes(id))
+                        arr.push(std.id + " " + student.name);
+                if (arr.length <= 0) {
+                    report("There is no student in " + id);
+                } else {
+                    report(id + ": ", arr.length + " students", arr);
+                    report("Time: " + data.time + "\nDate: " + data.date)
+                }
+                return arr
+            }
+
+            function randomStd() {
+                let stdKeys = [...stdMap.keys()] //Iterable
+                console.assert(stdKeys.length == stdMap.size)
+                let index = Math.trunc(stdKeys.length * Math.random());
+                let std = stdMap.get(stdKeys[index]);
+                report("Random Student : ", std.id);
+                return b
+            }
+
+            function findBest() { //the best gpa in stdMap
+                let bestStd = 0
+                let stdValues = stdMap.values();
+                for (let std of stdValues) {
+                    if (std.gpa > bestStd) {
+                        bestStd = std.gpa
+                    }
+                }
+                report("Best GPA: " + bestStd);
+            }
+
+            function findGpa(gpa) {
+                let count = 0
+                let stdValues = stdMap.values();
+                for (let std of stdValues) {
+                    if (gpa > std.gpa) {
+                        count++;
+                    }
+                }
+                report("Number of students higher than " + gpa + " average = " + count);
+            }
+
+            function showSchedule(studentid) {
+                let values = stdMap.values();
+                for (let student of values)
+                    if (student.id == studentid)
+                        for (let studentlist of student.list) {
+                            for (let crs of crsMap.values()) {
+                                if (studentlist == crs.id)
+                                    report("Exam Schedule: " + crs.id + " " + crs.time + " " + crs.date)
+                            }
+                        }
+
+            }
+
+            function studentList(id) {
+                id = id.toUpperCase();
+                let arr = [];
+                let mapValues = stdMap.values()
+                for (let std of mapValues)
+                    if (std.list.includes(id))
+                        arr.push(std.id + " " + std.name);
+                if (arr.length > 0) {
+                    for (let temp of arr) {
+                        report("Student Info: " + temp);
+                    }
+                } else report("No students in " + id);
+                return arr
+            }
+
+            function courseList(courseid) {
+                let mapValues = crsMap.values();
+                for (let crs of mapValues) {
+                    for (let room of crs.rooms) {
+                        if (courseid == room) {
+                            report("Course: " + crs.id)
+                        }
+                    }
+                }
+            }
+
+            function courseTime(courseid) {
+
+                let values = crsMap.values();
+                for (let crs of values) {
+                    for (let room of crs.rooms) {
+                        if (courseid == room) {
+                            report("Course Time " + crs.time)
+                        }
+                    }
+                }
+            }
+
+            function courseDate(courseid) {
+
+                let values = crsMap.values();
+                for (let crs of values) {
+                    for (let room of crs.rooms) {
+                        if (courseid == room) {
+                            report("Course Date " + crs.date)
+                        }
+                    }
+                }
+            }
+
+            function courseNumber(id) {
+                var total = 0
+                var values = crsMap.values();
+                for (var crs of values) {
+                    for (var temp of crs.rooms) {
+                        if (id == temp) {
+                            total++
+                        }
+                    }
+                }
+                report("Total Course: " + total)
+            }
+
+            function courseRoom(courseid) {
+                courseid = courseid.toUpperCase();
+                var mapValues = crsMap.values()
+                for (let crs of mapValues) {
+                    if (courseid == crs.id) {
+                        for (const room of crs.rooms) {
+                            report("Course Room: " + room)
+                        }
+                    }
+                }
+            }
+
+            function partTwo() {
+
+                let keys = [];
+                for (let std of stdMap) {
+                    keys.push(std[0])
+                }
+                let stdId = "214961891"
+                let countFirst = 0
+                let countSecond = 0
+                var firstTime = Date.now()
+                for (let x of keys) {
+                    if (x == stdId) {
+                        var first = Date.now() - firstTime;
+                        break;
+                    }
+                    countFirst++
+                }
+                var secondTime = Date.now();
+                for (let x of stdMap) {
+                    if (x[0] == stdId) {
+                        var second = Date.now() - secondTime;
+                        break;
+                    }
+                    countSecond++
+                }
+                report("First count: " + countFirst)
+                report("Second count: " + countSecond)
+                report("Time First: " + first)
+                report("Time Second: " + second)
+
+            }
+
+            const LINK = "https://maeyler.github.io/JS/data/"
+
+            function readStudents() {
+                fetch(LINK + "Students.txt").then(r => r.text())
+                    .then(t => makeData(t, Student, stdMap))
+            }
+
+            function readCourses() {
+                fetch(LINK + "Courses.txt").then(r => r.text())
+                    .then(t => makeData(t, Course, crsMap))
+            }
+            title.innerText = document.title
+            sample.innerText = showStd + "\n" + showCrs + "\n" + showSchedule + "\n" + studentList + "\n" + courseList + "\n" + courseNumber + "\n" + courseTime + "\n" + courseDate + "\n" + partTwo
+            readStudents();
+            readCourses();
+        </script>
+        </body>
+
+</html>

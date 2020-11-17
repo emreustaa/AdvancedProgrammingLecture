@@ -25,89 +25,24 @@
             width: 350px;
         }
     </style>
-    <meta id="AyzetPkcs11IsInstalled" content="Chrome-Extension" baseuri="">
+
 </head>
 
-<body data-new-gr-c-s-check-loaded="14.984.0" data-gr-ext-installed="" class="vsc-initialized">
-    <div id="div1">
-        <p><b id="docName">SubtleCrypto</b> &nbsp; <a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest" target="NewTab">Reference</a>
+<body>
+    <div id=div1>
+        <p><b id=docName></b> &nbsp; <a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest" target=NewTab>Reference</a>
         </p>
-        <p><input type="file" multiple="" onchange="fileSelect(this)">
+        <p><input type=file multiple onChange='fileSelect(this)' />
         </p>
-        <div id="sss">
-            <table class="inspector">
-                <tbody>
-                    <tr>
-                        <th><button onclick="previous();hideTip(this)">◀
-    <span class="tip1">Display previous object</span></button> &nbsp; Objects &nbsp;
-                            <button onclick="removeIt(event.ctrlKey);hideTip(this)">✘
-    <span class="tip1">Delete current object<br>
-        (&lt;CTRL&gt; deletes all)</span></button>
-                        </th>
-                        <th><button id="menu" onclick="display(MENU);hideTip(this)">M
-    <span class="tip1">Display Menu</span></button> &nbsp; Properties
-                        </th>
-                    </tr>
-                    <tr>
-                        <td rowspan="3">
-                            <ul id="list1" onclick="doClick(event, this)" tabindex="0" onkeydown="doKey(event)">
-                                <li style="color: white; background: blue;"><b>Menu</b> Crypto</li>
-                            </ul>
-                        </td>
-                        <td>
-                            <ul id="list2" onclick="doClick(event, this)">
-                                <li class="cfirst">Crypto<span class="tip2">Crypto<br>Menu<br>Object</span></li>
-                                <li>subtle: <b>SubtleCrypto</b></li>
-                                <li>algorithm: "SHA-1"</li>
-                                <li>M: "küçük şeyler güzeldir"</li>
-                                <li class="cname">Menu</li>
-                                <li class="cname">Object</li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Methods
-                            <input id="sorted" type="checkbox" checked="true" onclick="display(_)">
-                            <span id="small">sort</span>
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <ul id="list3" onclick="doClick(event, this)">
-                                <li class="cfirst">Crypto<span class="tip2">Crypto<br>Menu<br>Object</span></li>
-                                <li>bufferFromString</li>
-                                <li>bufferToHex</li>
-                                <li>bufferToString</li>
-                                <li>shaFromBuffer</li>
-                                <li>shaFromFile</li>
-                                <li>shaFromString</li>
-                                <li>shaFromURL</li>
-                                <li class="cname">Menu</li>
-                                <li>allKeysIn</li>
-                                <li>allValuesOf</li>
-                                <li>deepEqual</li>
-                                <li>toString</li>
-                                <li class="cname">Object</li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><input id="inp" onkeyup="doEnter(event)">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" id="out">[object Menu] Crypto — 3 properties and 11 methods</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <p><b>Açıklama</b></p>
-        <p>
-            <a href="https://en.wikipedia.org/wiki/SHA-1" target="NewTab">SHA-1</a> kripto yöntemi, verilen bir datayı 20 byte'lık hash koduna çevirir. Uzun ya da kısa, düz metin ya da binary fark etmez, algoritma her zaman 20 byte (40-digit hex) üretir.
-        </p>
+        <div id=sss></div>
+
     </div>
 
+
     <div id="div2">
+        <p><b>Sample Code</b></p>
+        <pre id=sample></pre>
+
 
     </div>
     <link href="./SubtleCrypto_files/inspector.css" rel="stylesheet">

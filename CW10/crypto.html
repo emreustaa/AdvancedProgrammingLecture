@@ -62,14 +62,11 @@
             }
             shaFromFile(f) { //File or Blob
                 //use f.arrayBuffer()
-                subtle.digest('SHA-1', new TextEncoder().encode(f.arrayBuffer()))
-                    .then(temp => [...new Uint8Array(temp)].map(toHex).join(''))
+                f.arrayBuffer().then(MENU.shaFromBuffer)
             }
             shaFromURL(u) { //URL or string
                 //use fetch(u).then ...
-                fetch(u).then(e =>
-                    subtle.digest('SHA-1', new TextEncoder().encode(e.name)
-                        .then(tmp => [...new Uint8Array(tmp)].map(toHex).join(''))))
+                fetch(u).then(resp => resp.arrayBuffer()).then(MENU.shaFromBuffer)
             }
             shaFromString(txt) {
                     if (txt.startsWith('https://')) {

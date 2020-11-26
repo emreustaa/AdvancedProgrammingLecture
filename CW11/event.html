@@ -1,0 +1,84 @@
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="/305/images/icon192.png">
+    <title>Event Classwork</title>
+
+    <style>
+        /* CSS comment */
+        
+        body {
+            max-width: 440px;
+        }
+        
+        #url {
+            width: 190px;
+        }
+        
+        span,
+        #url {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HTML comment: Modify all items marked xxx -->
+
+    <pre>Battery Status</pre>
+    <p>
+        Şarj durumu: <span id="chargeStatus"></span>
+
+    </p>
+
+    <pre>Charging Level Status</pre>
+    <p>
+        Level durumu: <span id="levelStatus"></span>
+
+    </p>
+    <pre>Online Status</pre>
+    <p>
+        Online Durum: <span id="onlineStatu"></span>
+    </p>
+
+    <pre>Click Key</pre>
+    <p>
+        Basilan Tus: <span id="keyLogger"></span>
+    </p>
+
+    <b>Sample code</b>
+    <pre id="sample">This text is not shown. Why?</pre>
+
+    <hr />
+
+    <script>
+        var sampleCode = document.getElementById("sampleCode")
+
+        function init() {
+
+
+            navigator.getBattery().then(b =>
+                b.onchargingchange = () => document.getElementById("chargeStatus").innerText = (b.charging ? "Charging" : "Discharging")
+            )
+            navigator.getBattery().then(b => {
+                document.getElementById("levelStatus").innerText = b.level * 100 + "%"
+                console.log(b)
+            })
+
+            onlineStatu.innerText = +navigator.onLine;
+
+            ononline = (e) => onlineStatu.innerText = navigator.onLine
+            onoffline = (e) => onlineStatu.innerText = navigator.onLine
+            onkeydown = (e) => document.getElementById("keyLogger").innerText = e.key
+        }
+
+        init()
+
+        sample.innerText = init
+    </script>
+
+</body>
+
+</html>

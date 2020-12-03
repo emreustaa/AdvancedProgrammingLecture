@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="../images/icon192.png">
+    <title>GitHub Users</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <style>
+        body {
+            max-width: 440px;
+        }
+        
+        img {
+            padding-right: 12px;
+            width: 64px;
+            border: 1px solid #555;
+            margin-top: 10px;
+            margin-left: 15px;
+            padding: 5px;
+        }
+        
+        h1 {
+            margin-top: 10px;
+            margin-left: 15px;
+            font-family: "Arial", Arial, Helvetica, sans-serif;
+        }
+        
+        h2 {
+            font-size: 30px;
+            font-family: "Times New Roman", Times, serif;
+            margin-top: 10px;
+            margin-left: 15px;
+            font-weight: bold;
+        }
+        
+        p {
+            margin-top: 10px;
+            margin-left: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2 id=title>Github Users</h2>
+    <p><input type=text id=usr value=emreustaa onChange="readUser()"></p>
+    <div>
+        <img src="" alt="" id="profile" style="width: 250px;height: 250px;">
+    </div>
+    <div>
+
+        <p>
+            <h1 id="name"></h1>
+        </p>
+        <p>
+            <h2 id="login"></h2>
+        </p>
+        <p>
+            <i class="fas fa-user-friends"></i></i><span id="company"></span>
+        </p>
+        <p>
+            <i class="fas fa-map-marker" aria-hidden="true"></i><span id="location"></span>
+        </p>
+        <p>
+            <i class="fas fa-envelope" aria-hidden="true"></i><span id="email"></span>
+        </p>
+        <p>
+
+            <i class="fas fa-link" aria-hidden="true"></i><span id="blog"></span>
+        </p>
+
+    </div>
+    <p id=out></p>
+
+
+    <script>
+        "use strict";
+
+        async function toJSON(url) {
+            let r = await fetch(url)
+            if (!r.ok) error(r.statusText)
+            return r.json()
+        }
+        async function readUser() {
+            const BR = "<BR>",
+                URL = "https://api.github.com/users/"
+            let u = await toJSON(URL + usr.value)
+            let profil = document.getElementById("profile")
+            profil.src = u.avatar_url
+
+            document.getElementById("name").innerText = u.name
+            document.getElementById("login").innerText = u.login
+            document.getElementById("company").innerText = u.company
+            document.getElementById("location").innerText = u.location
+            document.getElementById("email").innerText = u.email
+            document.getElementById("blog").innerText = u.blog
+
+
+        }
+
+        readUser()
+    </script>
+
+</body>
+
+</html>

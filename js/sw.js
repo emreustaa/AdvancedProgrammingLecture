@@ -1,4 +1,4 @@
-const CACHE = 'JS'
+const CACHE = 'JS2'
 
 function installCB(e) {
     console.log(CACHE, e);

@@ -1,7 +1,7 @@
 {
     "name": "JavaScript Works",
     "short_name": "JS",
-    "start_url": "/index.html",
+    "start_url": "index.html",
     "display": "standalone",
     "background_color": "cyan",
     "theme-color": "cyan",

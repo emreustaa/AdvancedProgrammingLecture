@@ -140,7 +140,7 @@
         async function makeMenu() {
             let [u, g] = location.host.split('.')
             if (g != 'github') u = prompt('GitHub user name')
-            let url = 'https://api.github.com/repos/emreustaa/AdvancedProgrammingLecture/contents/anim'
+            let url = 'https://api.github.com/repos/emreustaa/AdvancedProgrammingLecture/anim'
             let resp = await fetch(url)
             if (!resp.ok) throw resp.statusText
             let a = await resp.json()

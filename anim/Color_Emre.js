@@ -19,7 +19,7 @@ class Color_Emre extends Animator {
         this.elt = document.createElement('div')
         this.elt.style = "width: 10px; height: 10px; background: black;margin: auto"
 
-        this.anim = { transform: [x0, x1, x2, x3, x4, x5, x6, x7, x8, x9], width: [a, a1], background: b }
+        this.anim = { transform: [x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10], width: [a, a1], background: b }
         this.time = 3000
 
     }

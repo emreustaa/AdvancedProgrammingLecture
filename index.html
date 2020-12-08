@@ -7,35 +7,39 @@
     <link rel="icon" href="images/favicon.png" sizes="192x192" />
     <link rel="manifest" href="manifest.json">
     <title>Advanced Programming Language</title>
+
+
+
+    <style>
+        li {
+            font-size: 20px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            color: darkred;
+            margin-top: 10px;
+        }
+        
+        li :hover {
+            color: red;
+        }
+        
+        a {
+            color: darkblue;
+        }
+        
+        h1 {
+            color: red;
+        }
+        
+        h2 {
+            color: blue;
+        }
+    </style>
 </head>
 
-<style>
-    li {
-        font-size: 20px;
-        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-        color: darkred;
-        margin-top: 10px;
-    }
-    
-    li :hover {
-        color: red;
-    }
-    
-    a {
-        color: darkblue;
-    }
-    
-    h1 {
-        color: red;
-    }
-    
-    h2 {
-        color: blue;
-    }
-</style>
-
-
 <body>
+
+
+
     <h1 id="bbaydili">Advanced Programming Lecture</h1>
 
     <i><h2>Classworks</h2></i>
@@ -67,10 +71,12 @@
         </ul>
 
     </div>
+
+    <script>
+        navigator.serviceWorker.register('sw.js');
+    </script>
 </body>
 
-<script>
-    navigator.serviceWorker.register('sw.js')
-</script>
+
 
 </html>

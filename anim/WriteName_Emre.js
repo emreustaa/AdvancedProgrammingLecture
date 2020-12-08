@@ -1,27 +1,29 @@
-class Color_Emre extends Animator {
+class WriteName_Emre extends Animator {
     constructor() {
         super();
-        this.author = 'M A Eyler'
-        this.desc = 'Smooth color change'
-        let b = ["lightcyan", "magenta", "yellow", "lightcyan"]
-        let x0 = "translate(0px,0px)"
-        let x1 = "translate(0px,50px)"
-        let x2 = "translate(0px,100px)"
-        let x3 = "translate(0px,150px)"
-        let x4 = "translate(0px,200px)"
-        let x5 = "translate(0px,250px)"
-        let x6 = "translate(0px,300px)"
-        let x7 = "translate(0px,350px)"
-        let x8 = "translate(0px,400px)"
-        let x9 = "translate(0px,450px)"
-        let a = '0%'
-        let a1 = '90%'
+        this.author = 'Emre USTA'
+        this.desc = 'Writing the First Letters of My Name and Last Name'
+        let b = ["pink", "darkred", "blue", "yellow", "gray", "black", "cyan"]
+        let x0 = "translate(0,0)",
+            x1 = "translate(500px,0px)",
+            x2 = "translate(0px,0px)",
+            x3 = "translate(0px,500px)",
+            x4 = "translate(500px,500px)",
+            x5 = "translate(0px,500px)",
+            x6 = "translate(0px,250px)",
+            x7 = "translate(500px,250px)",
+            x8 = "translate(0px,250px)",
+            x9 = "translate(0px,0px)",
+            x10 = "translate(0px,500px)",
+            x11 = "translate(500px,500px)",
+            x12 = "translate(500px,0px)"
+        this.anim = { background: b, transform: [x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12] }
         this.elt = document.createElement('div')
-        this.elt.style = "width: 10px; height: 10px; background: black;margin: auto"
-
-        this.anim = { transform: [x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10], width: [a, a1], background: b }
-        this.time = 3000
+        this.elt.style = "width: 50px; height: 50px; background-color: Black; border-radius : 40%;"
+        this.time = 10000
 
     }
-    update() {}
+    update() {
+
+    }
 }

@@ -9,18 +9,30 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,600,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css" />
     <title>Ülke Bilgileri </title>
+    <style>
+        #one,
+        #two {
+            margin: 10px;
+        }
+        
+        #map {
+            height: 500px;
+            width: 100px;
+            box-sizing: border-box;
+            border: 0;
+        }
+    </style>
 </head>
 
 <body>
+
+
+
     <header>
         <nav>
-            <h1>Ülkeler ve Detayları</h1>
+            <h1>Ülkeler - Emre USTA</h1>
         </nav>
-        <div>
-            <p class="personName">
-                by Emre USTA
-            </p>
-        </div>
+
 
     </header>
     <main>
@@ -54,6 +66,11 @@
 
         </div>
     </main>
+
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+    <!-- Make sure you put JS AFTER CSS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
     <script src="main.js"></script>
 </body>

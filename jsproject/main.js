@@ -94,6 +94,7 @@ fetchCountry();
 
 
 searchCountry.addEventListener("input", (e) => {
+
     const resultCountry = e.target.value;
     const availableCountries = Array.from(document.querySelectorAll(".paraName h2"));
     availableCountries.forEach(country => {
@@ -112,6 +113,7 @@ searchCountry.addEventListener("input", (e) => {
 const continentSelect = document.querySelector("select");
 
 continentSelect.onchange = (evt) => {
+
     const availableCountries = Array.from(document.querySelectorAll(".paraName span"));
     availableCountries.forEach(country => {
         const myCountry = country.innerHTML.toLowerCase().trim();
@@ -126,6 +128,9 @@ continentSelect.onchange = (evt) => {
 }
 
 const modalTemplate = (element) => {
+        console.log("tiklandi")
+        console.log(element.latlng)
+
         console.log(element)
         modalWrapper.innerHTML = `				
         
@@ -164,17 +169,27 @@ const modalTemplate = (element) => {
 				 </div>		  
 
 			</div> 
-	</div>     
-					`
+    </div>     
+        <div id=one>
+        <h2 id=title></h2>
+    </div>
+    <div style="margin-left:25px;padding-bottom:20px;font-weight:300">Harita Görünümü </div>
+    <div id=map style="position: relative;width: 300px;height: 300px; margin-left:25px"></div>
+    <div id=two>
+        </p>
+    </div>
+    `
+    init(element.latlng[0],element.latlng[1])
+
 	const borderingCountries = document.querySelector(".bordering");
 
 
 	console.log(borderingCountries)
 
 	borderingCountries.addEventListener("click", (evt) => {
-		const apiEndpoint = `https://restcountries.eu/rest/v2/name/${event.target.innerHTML.trim()}`
+		const apiEndpoint = `https://restcountries.eu/rest/v2/name/${evt.target.innerHTML.trim()}`
 		console.log(evt.target.innerHTML)
-		console.log(apiEndpoint)
+        console.log(apiEndpoint)
 		fetch(apiEndpoint)
 			.then(response => response.json())
 			.then(data => {
@@ -201,4 +216,22 @@ const modalTemplate = (element) => {
 
 
 
+}
+
+
+"use strict"
+var MAP  //global
+function init(lat,lng) {
+    let p = {lat, lng}
+    //L is global object from leaflet
+    MAP = L.map('map').setView(p, 5)  //setZoom(10)
+    let u = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+    let attribution = '&copy; OpenStreetMap contributors'
+    L.tileLayer(u, {attribution}).addTo(MAP)
+    let report = () => out.innerText = MAP.getZoom()
+    new google.maps.Marker({
+        position: p,
+        MAP,
+        title: "Hello World!",
+      });
 }

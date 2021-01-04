@@ -187,7 +187,7 @@ const modalTemplate = (element) => {
 	console.log(borderingCountries)
 
 	borderingCountries.addEventListener("click", (evt) => {
-		const apiEndpoint = `https://restcountries.eu/rest/v2/name/${evt.target.innerHTML.trim()}`
+		const apiEndpoint = `https://restcountries.eu/rest/v2/name/${event.target.innerHTML.trim()}`
 		console.log(evt.target.innerHTML)
         console.log(apiEndpoint)
 		fetch(apiEndpoint)
@@ -220,11 +220,11 @@ const modalTemplate = (element) => {
 
 
 "use strict"
-var MAP  //global
+var MAP 
 function init(lat,lng) {
     let p = {lat, lng}
-    //L is global object from leaflet
-    MAP = L.map('map').setView(p, 5)  //setZoom(10)
+  
+    MAP = L.map('map').setView(p, 5)  
     let u = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
     let attribution = '&copy; OpenStreetMap contributors'
     L.tileLayer(u, {attribution}).addTo(MAP)

@@ -229,9 +229,5 @@ function init(lat,lng) {
     let attribution = '&copy; OpenStreetMap contributors'
     L.tileLayer(u, {attribution}).addTo(MAP)
     let report = () => out.innerText = MAP.getZoom()
-    new google.maps.Marker({
-        position: p,
-        MAP,
-        title: "Hello World!",
-      });
+   
 }

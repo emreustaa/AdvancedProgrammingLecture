@@ -187,7 +187,10 @@ const modalTemplate = (element) => {
 	console.log(borderingCountries)
 
 	borderingCountries.addEventListener("click", (evt) => {
-		const apiEndpoint = `https://restcountries.eu/rest/v2/name/${event.target.innerHTML.trim()}`
+        const apiEndpoint = `https://restcountries.eu/rest/v2/name/${event.target.innerHTML.trim()}`
+        if(evt.target.className == "border btn"){
+
+
 		console.log(evt.target.innerHTML)
         console.log(apiEndpoint)
 		fetch(apiEndpoint)
@@ -210,7 +213,8 @@ const modalTemplate = (element) => {
                     
 				console.log(data[0].borders)
 				modalTemplate(data[0])
-			})
+            })
+        }
 	})
 
 
